@@ -1,6 +1,8 @@
 # studyq
 
-A new Flutter project.
+![logo](docres/logo.jpg)
+
+An app to help you study with friends!
 
 ## Getting Started
 
