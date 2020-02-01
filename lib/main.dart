@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: Home(title: 'Flutter Demo Home Page'),
+      home: HomeView(title: 'studyQ'),
     );
   }
 }
