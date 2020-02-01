@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:studyQ/views/quiz_start/quiz_start_view.dart';
 
-import 'package:studyQ/views/home/components/QuizCardComponent.dart';
+import 'package:studyQ/views/home/components/quiz_card_component.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({Key key, this.title}) : super(key: key);
