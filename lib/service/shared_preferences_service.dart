@@ -19,11 +19,12 @@ class SharedPreferencesService {
   static Future<Account> getAccount() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String jsonObject = prefs.getString(_accountPreferenceKey);
-    Account account = Account(userName: "<unkown>");
+    Account account = Account(userName: "<unknown>");
     try {
-      account = Account.fromMap(jsonDecode(jsonObject));
+      var m = jsonDecode(jsonObject);
+      account = Account.fromMap(m);
     } catch (e) {
-      log("Could not decode account. JSON: " + jsonObject);
+      log("Could not decode account.");
     }
     return account;
   }
