@@ -48,7 +48,8 @@ class _HomeViewState extends State<HomeView> {
     // Generate list of cards
     var quizCardList = List<QuizCard>();
     if (quizList != null) {
-      quizList.forEach((quiz) => quizCardList.add(QuizCard(quiz)));
+      quizList.forEach(
+          (quiz) => quizCardList.add(QuizCard(quiz, startQuiz: startQuiz)));
     }
     // Return in listview
     return ListView(
