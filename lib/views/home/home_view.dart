@@ -22,19 +22,18 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [/* Add account and settings buttons here */],
       ),
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
-        child: ListView(
-          children: <Widget>[
-            QuizCard(
-              Quiz(
-                name: "Name of the First Quiz", 
-                questions: null), 
-              startQuiz: startQuiz
-            )
-          ]
-        )
+        children: <Widget>[
+          QuizCard(
+            Quiz(
+              name: "Name of the First Quiz",
+              questions: null), 
+            startQuiz: startQuiz
+          )
+        ]
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 32.0),
@@ -42,7 +41,7 @@ class _HomeViewState extends State<HomeView> {
             onPressed: () {
               HapticFeedback.lightImpact();
             },
-            label: new Text("New Quiz", style: TextStyle(fontSize: 16))),
+            label: new Text("Create Quiz", style: TextStyle(fontSize: 16))),
       )
     );
   }

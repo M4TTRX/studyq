@@ -13,6 +13,30 @@ class Quiz {
     id = Uuid().v4();
   }
 
+  int getHighScore() {
+    return _highScore ?? 0;
+  }
+
+  String getScoreFraction() {
+    if (questions == null) {
+      return "0 / 0";
+    }
+
+    if (questions.length == 0) {
+      return "0 / 0";
+    }
+
+    return getHighScore().toString() + " / " + questions.length.toString();
+  }
+
+  int getPercentage() {
+    if (questions == null) {
+      return 0;
+    }
+    
+    return getHighScore() / questions.length == 0 ? 1 : questions.length;
+  }
+
   void setHighScore({highScore: int}) {
     // prevent highScore from being above max score
     this._highScore = this.questions.length >= highScore ? highScore : 0;

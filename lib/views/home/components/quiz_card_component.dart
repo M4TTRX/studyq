@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -13,13 +14,21 @@ class QuizCard extends Card {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     ),
+    color: Colors.grey.shade300,
     child: Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
+      child: Row(
         children: <Widget>[
-          Text(quiz.name),
-          RaisedButton(
-            child: Text("Start"),
+          Spacer(flex: 2),
+          Column(
+            children: <Widget>[
+              Text(quiz.name, style: TextStyle(fontWeight: FontWeight.bold),),
+              Text("Scored " + quiz.getScoreFraction())
+            ],
+          ),
+          Spacer(flex: 2),
+          CupertinoButton(
+            child: Text("View", style: TextStyle(fontSize: 20)),
             onPressed: () {
               HapticFeedback.lightImpact();
               startQuiz(quiz);
