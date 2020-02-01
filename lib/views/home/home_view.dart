@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:studyQ/models/account_model.dart';
 import 'package:studyQ/service/service.dart';
 
 import 'package:studyQ/views/view_quiz/view_quiz_view.dart';
@@ -22,6 +23,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    _loadAndVerifyAccount();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -41,7 +43,7 @@ class _HomeViewState extends State<HomeView> {
             label: new Text("New Quiz", style: TextStyle(fontSize: 16))),
       ),
       body: StreamBuilder<Object>(
-        stream: service.allQuizItems,
+        stream: service.quizItemStream,
         builder: (context, snapchot) {
           return _buildHomeBody(snapchot.data);
         },
@@ -67,5 +69,14 @@ class _HomeViewState extends State<HomeView> {
     await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return ViewQuizView(quiz: quiz);
     }));
+  }
+
+  _loadAndVerifyAccount() async {
+    Account account = await AppService.getAccount();
+    if (account.name == "<unkown>") {
+      await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+        return QuizStartView(quiz: quiz);
+      }));
+    }
   }
 }
