@@ -1,10 +1,9 @@
-import 'package:studyQ/model/quiz/OptionModel.dart';
 import 'package:uuid/uuid.dart';
 
 class Question {
   String id;
   String question;
-  List<Option> options;
+  List<Question> options;
 
   Question({this.question, this.options}) {
     id = Uuid().v4();
@@ -18,10 +17,10 @@ class Question {
   Question.fromMap(Map<String, dynamic> m) {
     this.id = m[_idKey] as String;
     this.question = m[_questionKey] as String;
-    this.options = List<Option>();
+    this.options = List<Question>();
     var options = m[_optionsKey] as List;
     for (var option in options) {
-      this.options.add(Option.fromMap(option));
+      this.options.add(Question.fromMap(option));
     }
   }
 
