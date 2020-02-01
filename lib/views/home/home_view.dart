@@ -4,7 +4,7 @@ import 'package:studyQ/models/account_model.dart';
 import 'package:studyQ/service/service.dart';
 import 'package:studyQ/views/home/components/login_view.dart';
 
-import 'package:studyQ/views/quiz_start/quiz_start_view.dart';
+import 'package:studyQ/views/view_quiz/view_quiz_view.dart';
 
 import 'package:studyQ/views/home/components/quiz_card_component.dart';
 
@@ -68,7 +68,7 @@ class _HomeViewState extends State<HomeView> {
 
   Future<void> viewQuiz(Quiz quiz) async {
     await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return QuizStartView(quiz: quiz);
+      return ViewQuizView(quiz: quiz);
     }));
   }
 
