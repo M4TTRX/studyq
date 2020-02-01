@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:studyQ/view/home/main_view.dart';
+import 'package:studyQ/views/home/HomeView.dart';
 
 void main() => runApp(App());
 
