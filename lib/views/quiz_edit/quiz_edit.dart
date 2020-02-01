@@ -14,10 +14,14 @@ class QuizStartView extends StatefulWidget {
 
 class _QuizStartViewState extends State<QuizStartView> {
   @override
-  Widget build(BuildContext context, {Future<void> Function(Quiz quiz) startQuiz}) {
+  Widget build(BuildContext context) {
     return Scaffold(
        appBar: AppBar(
         title: Text(widget.quiz.name),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
+        children: widget.quiz.questions.map((question) => QuestionCard(question)).toList()
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 32.0),

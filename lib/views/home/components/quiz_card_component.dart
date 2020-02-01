@@ -8,7 +8,7 @@ class QuizCard extends Card {
 
   final Quiz quiz;
 
-  QuizCard(this.quiz, {Future<void> Function(Quiz quiz) startQuiz}) 
+  QuizCard(this.quiz, {Future<void> Function(Quiz quiz) viewQuiz}) 
   : super(
     elevation: 2,
     shape: RoundedRectangleBorder(
@@ -31,7 +31,7 @@ class QuizCard extends Card {
             child: Text("View", style: TextStyle(fontSize: 20)),
             onPressed: () {
               HapticFeedback.lightImpact();
-              startQuiz(quiz);
+              viewQuiz(quiz);
             },
           ),
         ],

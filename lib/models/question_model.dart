@@ -6,9 +6,32 @@ class Question {
   String id;
   String question;
   List<Answer> answers;
+  Answer _correctAnswer;
 
   Question({this.question, this.answers}) {
     id = Uuid().v4();
+
+    answers.forEach((answer) => {
+      if (answer.isCorrect) {
+        setCorrectAnswer(answer)
+      }
+    });
+  }
+
+  Answer getCorrectAnswer() {
+    return _correctAnswer;
+  }
+
+  int getCorrectAnswerIndex() {
+    if (_correctAnswer == null) {
+      return -1;
+    }
+
+    return answers.indexOf(_correctAnswer);
+  }
+
+  void setCorrectAnswer(Answer correctAnswer) {
+    _correctAnswer = correctAnswer;
   }
 
   // Mapping
