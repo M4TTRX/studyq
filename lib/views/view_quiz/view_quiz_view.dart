@@ -18,6 +18,22 @@ class _ViewQuizViewState extends State<ViewQuizView> {
        appBar: AppBar(
         title: Text(widget.quiz.name),
       ),
+      body: Column(
+        children: <Widget>[
+          MaterialButton(
+            child: Text("Start Quiz"),
+            onPressed: () {
+              
+            },
+          ),
+          MaterialButton(
+            child: Text("Edit Quiz"),
+            onPressed: () {
+              
+            }
+          )
+        ]
+      ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 32.0),
         child: FloatingActionButton.extended(
