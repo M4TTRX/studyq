@@ -7,13 +7,15 @@ class Quiz {
   String id;
   String name;
   List<Question> questions;
-  int highScore;
+  int _highScore;
 
-  Quiz({this.name, this.questions, this.highScore}) {
+  Quiz({this.name, this.questions}) {
     id = Uuid().v4();
+  }
+
+  void setHighScore({highScore: int}) {
     // prevent highScore from being above max score
-    this.highScore =
-        this.questions.length >= this.highScore ? this.highScore : 0;
+    this._highScore = this.questions.length >= highScore ? highScore : 0;
   }
 
   // Mapping
@@ -25,7 +27,7 @@ class Quiz {
   Quiz.fromMap(Map<String, dynamic> m) {
     this.id = m[_idKey] as String ?? "<no_id>";
     this.name = m[_nameKey] as String ?? "<no_name>";
-    this.highScore = m[_highScoreKey] as int ?? 0;
+    this._highScore = m[_highScoreKey] as int ?? 0;
     this.questions = List<Question>();
     var questions = m[_questionsKey] as List;
     for (var option in questions) {
@@ -42,7 +44,7 @@ class Quiz {
       _idKey: id,
       _nameKey: name,
       _questionsKey: questions,
-      _highScoreKey: highScore
+      _highScoreKey: _highScore
     };
     return map;
   }

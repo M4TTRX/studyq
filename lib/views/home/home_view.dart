@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 
 import 'package:studyQ/views/quiz_start/quiz_start_view.dart';
 
-import 'package:studyQ/views/home/components/QuizCardComponent.dart';
+import 'package:studyQ/views/home/components/quiz_card_component.dart';
+
+import 'package:studyQ/models/quiz_model.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({Key key, this.title}) : super(key: key);
@@ -18,34 +20,36 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
-          child: ListView.separated(
-            padding: const EdgeInsets.all(0),
-            itemCount: 10,
-            itemBuilder: (BuildContext context, int index) {
-              return QuizCard(startQuiz);
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
+        child: ListView(
+          children: <Widget>[
+            QuizCard(
+              Quiz(
+                name: "Name of the First Quiz", 
+                questions: null), 
+              startQuiz: startQuiz
+            )
+          ]
+        )
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 32.0),
+        child: FloatingActionButton.extended(
+            onPressed: () {
+              HapticFeedback.lightImpact();
             },
-            separatorBuilder: (BuildContext context, int index) =>
-                const Divider(),
-          ),
-        ),
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 32.0),
-          child: FloatingActionButton.extended(
-              onPressed: () {
-                HapticFeedback.lightImpact();
-              },
-              label: new Text("New Quiz", style: TextStyle(fontSize: 16))),
-        ));
+            label: new Text("New Quiz", style: TextStyle(fontSize: 16))),
+      )
+    );
   }
 
-  void startQuiz() async {
+  Future<void> startQuiz(Quiz quiz) async {
     await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return QuizStartView(title: "Start Quiz");
+      return QuizStartView(title: quiz.name);
     }));
   }
 }
