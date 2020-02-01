@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:studyQ/models/QuestionModel.dart';
+import 'package:studyQ/models/question_model.dart';
 import 'package:uuid/uuid.dart';
 
 class Quiz {
