@@ -29,7 +29,7 @@ class _ViewQuizViewState extends State<ViewQuizView> {
             onPressed: () {
               HapticFeedback.lightImpact();
             },
-            label: new Text("Start Quiz", style: TextStyle(fontSize: 16))),
+            label: new Text("Save Changes", style: TextStyle(fontSize: 16))),
       )
     );
   }

@@ -33,14 +33,6 @@ class _ViewQuizViewState extends State<ViewQuizView> {
             }
           )
         ]
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 32.0),
-        child: FloatingActionButton.extended(
-            onPressed: () {
-              HapticFeedback.lightImpact();
-            },
-            label: new Text("Start Quiz", style: TextStyle(fontSize: 16))),
       )
     );
   }
