@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:studyQ/models/quiz_model.dart';
+import 'package:studyQ/views/home/components/question_card_component.dart';
 
 class QuizStartView extends StatefulWidget {
-  QuizStartView({Key key, this.title}) : super(key: key);
+  QuizStartView({Key key, this.quiz}) : super(key: key);
 
-  final String title;
+  final Quiz quiz;
 
   @override
   _QuizStartViewState createState() => _QuizStartViewState();
@@ -15,13 +17,11 @@ class _QuizStartViewState extends State<QuizStartView> {
   Widget build(BuildContext context) {
     return Scaffold(
        appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.quiz.name),
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
-        children: <Widget>[
-          Text("Hello")
-        ]
+        children: widget.quiz.questions.map((question) => QuestionCard(question)).toList()
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 32.0),

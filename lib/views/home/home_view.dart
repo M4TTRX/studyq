@@ -60,7 +60,7 @@ class _HomeViewState extends State<HomeView> {
 
   Future<void> startQuiz(Quiz quiz) async {
     await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return QuizStartView(title: quiz.name);
+      return QuizStartView(quiz: quiz);
     }));
   }
 }
