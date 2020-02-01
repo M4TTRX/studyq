@@ -19,7 +19,7 @@ class SharedPreferencesService {
   static Future<Account> getAccount() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String jsonObject = prefs.getString(_accountPreferenceKey);
-    Account account = Account(name: "Unkown");
+    Account account = Account(userName: "<unkown>");
     try {
       account = Account.fromMap(jsonDecode(jsonObject));
     } catch (e) {
