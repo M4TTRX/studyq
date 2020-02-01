@@ -25,7 +25,12 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        actions: [/* Add account and settings buttons here */],
+        actions: [
+          IconButton(
+            icon: Icon(Icons.account_circle),
+            onPressed: () {},
+          ),
+        ],
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 32.0),

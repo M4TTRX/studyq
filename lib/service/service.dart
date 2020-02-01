@@ -12,7 +12,9 @@ class AppService {
   }
 
   static Future<List<Quiz>> _getQuizItems() async {
-    String rawJson = await NetworkService.getQuizItemsForAccount();
+    // get accountID
+    var accountID = "2";
+    String rawJson = await NetworkService.getQuizItemsForAccount(accountID);
     var quizList = List<Quiz>();
     try {
       var quizListMap = json.decode(rawJson);
