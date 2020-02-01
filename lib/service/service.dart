@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:studyQ/models/quiz_model.dart';
 
 import 'network_service.dart';
@@ -9,8 +12,18 @@ class AppService {
   }
 
   static Future<List<Quiz>> _getQuizItems() async {
-    String json = await NetworkService.getQuizItemsForAccount();
-    Quiz quiz = Quiz.fromJson(json);
-    return [quiz];
+    String rawJson = await NetworkService.getQuizItemsForAccount();
+    var quizList = List<Quiz>();
+    try {
+      var quizListMap = json.decode(rawJson);
+
+      for (var m in quizListMap) {
+        quizList.add(Quiz.fromMap(m));
+      }
+      return quizList;
+    } catch (e) {
+      log("Error parsing json:" + rawJson);
+      return [];
+    }
   }
 }
