@@ -3,7 +3,7 @@ import 'package:studyQ/models/quiz_model.dart';
 import 'network_service.dart';
 
 class AppService {
-  Stream<List<Quiz>> get getAllQuizItems async* {
+  Stream<List<Quiz>> get allQuizItems async* {
     var workouts = await _getQuizItems();
     yield workouts;
   }
