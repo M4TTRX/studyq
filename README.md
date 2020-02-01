@@ -1,4 +1,4 @@
-# studyq
+# studyQ
 
 ![logo](docres/logo.jpg)
 
