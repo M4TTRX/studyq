@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:studyQ/models/account_model.dart';
 import 'package:studyQ/service/service.dart';
+import 'package:studyQ/views/home/components/login_view.dart';
 
 import 'package:studyQ/views/quiz_start/quiz_start_view.dart';
 
@@ -73,9 +74,10 @@ class _HomeViewState extends State<HomeView> {
 
   _loadAndVerifyAccount() async {
     Account account = await AppService.getAccount();
-    if (account.name == "<unkown>") {
-      await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-        return QuizStartView(quiz: quiz);
+    if (account.userName == "<unkown>") {
+      await Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) {
+        return LoginView();
       }));
     }
   }
