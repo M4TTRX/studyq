@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:studyQ/service/service.dart';
 
 import 'package:studyQ/views/quiz_start/quiz_start_view.dart';
 
@@ -17,6 +18,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  AppService service = AppService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,25 +27,34 @@ class _HomeViewState extends State<HomeView> {
         title: Text(widget.title),
         actions: [/* Add account and settings buttons here */],
       ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
-        children: <Widget>[
-          QuizCard(
-            Quiz(
-              name: "Name of the First Quiz",
-              questions: null), 
-            startQuiz: startQuiz
-          )
-        ]
-      ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 32.0),
         child: FloatingActionButton.extended(
             onPressed: () {
               HapticFeedback.lightImpact();
             },
-            label: new Text("Create Quiz", style: TextStyle(fontSize: 16))),
-      )
+            label: new Text("New Quiz", style: TextStyle(fontSize: 16))),
+      ),
+      body: StreamBuilder<Object>(
+        stream: service.allQuizItems,
+        builder: (context, snapchot) {
+          return _buildHomeBody(snapchot.data);
+        },
+      ),
+    );
+  }
+
+  Widget _buildHomeBody(List<Quiz> quizList) {
+    // Generate list of cards
+    var quizCardList = List<QuizCard>();
+    if (quizList != null) {
+      quizList.forEach(
+          (quiz) => quizCardList.add(QuizCard(quiz, startQuiz: startQuiz)));
+    }
+    // Return in listview
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
+      children: quizCardList,
     );
   }
 

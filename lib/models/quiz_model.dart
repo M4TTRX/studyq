@@ -73,10 +73,7 @@ class Quiz {
     return map;
   }
 
-  Quiz.fromJson(String s) {
-    var map = json.decode(s);
-    Quiz.fromMap(map);
-  }
+  Quiz.fromJson(String s) : this.fromMap(json.decode(s));
 
   String toJson() {
     var map = toMap();
