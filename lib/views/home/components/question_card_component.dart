@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:studyQ/models/answer_model.dart';
 
 import 'package:studyQ/models/question_model.dart';
 
@@ -7,18 +8,19 @@ class QuestionCard extends Card {
 
   final Question question;
 
-  QuestionCard(this.question, {Future<void> Function(Question question) startQuestion}) 
-  : super(
-    elevation: 2,
+  QuestionCard(this.question, {Future<void> Function(Question question) startQuestion}) : super(
+    elevation: 4,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     ),
-    color: Colors.grey.shade300,
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: <Widget>[
-          Text(question.question, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(question.question, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          ),
           Column(
             children: question.answers.map((answer) =>
               Padding(
@@ -29,7 +31,9 @@ class QuestionCard extends Card {
                       child: Text(answer.answer, style: TextStyle()),
                       fit: FlexFit.tight
                     ),
-                    CupertinoSwitch(value: answer.isCorrect, onChanged: null)
+                    Checkbox(value: answer.isCorrect, onChanged: (bool newValue) {
+                      newValue = setCorrectAnswer(question, answer);
+                    })
                   ]
                 ),
               )
@@ -39,4 +43,10 @@ class QuestionCard extends Card {
       ),
     )
   );
+
+  static bool setCorrectAnswer(Question question, Answer correctAnswer) {
+    question.answers.forEach((answer) => answer.isCorrect = answer == correctAnswer);
+    question.setCorrectAnswer(correctAnswer);
+    return true;
+  }
 }

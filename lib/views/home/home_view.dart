@@ -49,7 +49,7 @@ class _HomeViewState extends State<HomeView> {
     var quizCardList = List<QuizCard>();
     if (quizList != null) {
       quizList.forEach(
-          (quiz) => quizCardList.add(QuizCard(quiz, startQuiz: startQuiz)));
+          (quiz) => quizCardList.add(QuizCard(quiz, viewQuiz: viewQuiz)));
     }
     // Return in listview
     return ListView(
@@ -58,7 +58,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Future<void> startQuiz(Quiz quiz) async {
+  Future<void> viewQuiz(Quiz quiz) async {
     await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return QuizStartView(quiz: quiz);
     }));
