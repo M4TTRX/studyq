@@ -1,4 +1,4 @@
-# studyq
+# studyQ
 
 A new Flutter project.
 
