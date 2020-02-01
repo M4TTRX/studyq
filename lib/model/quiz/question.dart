@@ -1,4 +1,4 @@
-import 'package:studyq/model/quiz/option.dart';
+import 'package:studyQ/model/quiz/option.dart';
 import 'package:uuid/uuid.dart';
 
 class Question {
