@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: HomeView(title: 'studyQ'),
+      home: HomeView(),
     );
   }
 }

@@ -18,10 +18,19 @@ class AppService {
     return account;
   }
 
+  static void setAccount(String userName) async {
+    var account = Account(userName: userName);
+    await SharedPreferencesService.putAccount(account);
+  }
+
   static Future<List<Quiz>> _getQuizItems() async {
     // get accountID
-    var accountID = "2";
-    String rawJson = await NetworkService.getQuizItemsForAccount(accountID);
+    var account = await SharedPreferencesService.getAccount();
+    if (account.userName == null) {
+      return List<Quiz>();
+    }
+    String rawJson =
+        await NetworkService.getQuizItemsForAccount(account.userName);
     var quizList = List<Quiz>();
     try {
       var quizListMap = json.decode(rawJson);
