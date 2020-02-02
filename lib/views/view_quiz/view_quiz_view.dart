@@ -43,7 +43,7 @@ class _ViewQuizViewState extends State<ViewQuizView> {
   }
 
   Future<void> startQuiz(Quiz quiz) async {
-    await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+    await Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
       return QuizView(quiz: quiz);
     }));
   }
