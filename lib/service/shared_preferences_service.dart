@@ -7,7 +7,7 @@ import 'package:studyQ/models/account_model.dart';
 class SharedPreferencesService {
   static final _accountPreferenceKey = "account";
 
-  static Future updateAccount(Account account) async {
+  static Future putAccount(Account account) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove(_accountPreferenceKey);
 

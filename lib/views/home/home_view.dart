@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:studyQ/models/account_model.dart';
@@ -11,9 +13,7 @@ import 'package:studyQ/views/home/components/quiz_card_component.dart';
 import 'package:studyQ/models/quiz_model.dart';
 
 class HomeView extends StatefulWidget {
-  HomeView({Key key, this.title}) : super(key: key);
-
-  final String title;
+  HomeView({Key key}) : super(key: key);
 
   @override
   _HomeViewState createState() => _HomeViewState();
@@ -27,13 +27,7 @@ class _HomeViewState extends State<HomeView> {
     _loadAndVerifyAccount();
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.account_circle),
-            onPressed: () {},
-          ),
-        ],
+        title: Text("StudyQ"),
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 32.0),
@@ -74,11 +68,13 @@ class _HomeViewState extends State<HomeView> {
 
   _loadAndVerifyAccount() async {
     Account account = await AppService.getAccount();
-    if (account.userName == "<unkown>") {
+    if (account.userName == "<unknown>") {
       await Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) {
         return LoginView();
       }));
+    } else {
+      log(account.userName);
     }
   }
 }
