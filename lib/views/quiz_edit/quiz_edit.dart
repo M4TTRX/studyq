@@ -3,16 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:studyQ/models/quiz_model.dart';
 import 'package:studyQ/views/home/components/question_card_component.dart';
 
-class ViewQuizView extends StatefulWidget {
-  ViewQuizView({Key key, this.quiz}) : super(key: key);
+class EditQuizView extends StatefulWidget {
+  EditQuizView({Key key, this.quiz}) : super(key: key);
 
   final Quiz quiz;
 
   @override
-  _ViewQuizViewState createState() => _ViewQuizViewState();
+  _EditQuizViewState createState() => _EditQuizViewState();
 }
 
-class _ViewQuizViewState extends State<ViewQuizView> {
+class _EditQuizViewState extends State<EditQuizView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
