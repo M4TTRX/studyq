@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:studyQ/models/friend_score_model.dart';
 import 'package:studyQ/models/question_model.dart';
 import 'package:uuid/uuid.dart';
 
@@ -8,6 +9,7 @@ class Quiz {
   String name;
   List<Question> questions;
   int _highScore;
+  List<FriendScore> leaderboard;
 
   Quiz({this.name, this.questions}) {
     id = Uuid().v4();
@@ -33,7 +35,7 @@ class Quiz {
     if (questions == null) {
       return 0;
     }
-    
+
     return getHighScore() / questions.length == 0 ? 1 : questions.length;
   }
 
@@ -47,27 +49,45 @@ class Quiz {
   static final String _nameKey = "name";
   static final String _questionsKey = "questions";
   static final String _highScoreKey = "highScore";
+  static final String _leaderboardKey = "leaderboard";
 
   Quiz.fromMap(Map<String, dynamic> m) {
     this.id = m[_idKey] as String ?? "<no_id>";
     this.name = m[_nameKey] as String ?? "<no_name>";
     this._highScore = m[_highScoreKey] as int ?? 0;
+
+    // questions
     this.questions = List<Question>();
     var questions = m[_questionsKey] as List;
     for (var option in questions) {
       this.questions.add(Question.fromMap(option));
     }
+    // leaderboard
+    this.leaderboard = List<FriendScore>();
+    if (m[_leaderboardKey] != null) {
+      var friendScores = m[_leaderboardKey] as List;
+      for (var f in friendScores) {
+        this.leaderboard.add(FriendScore.fromMap(f));
+      }
+    }
   }
 
   Map<String, dynamic> toMap() {
+    // questions
     var questions = List<Map<String, Object>>();
     for (var question in this.questions) {
       questions.add(question.toMap());
+    }
+    // leaderboard
+    var leaderboard = List<Map<String, Object>>();
+    for (var friendScore in this.leaderboard) {
+      leaderboard.add(friendScore.toMap());
     }
     var map = {
       _idKey: id,
       _nameKey: name,
       _questionsKey: questions,
+      _leaderboardKey: leaderboard,
       _highScoreKey: _highScore
     };
     return map;
