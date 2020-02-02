@@ -8,10 +8,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
 // Endpoints to hit
-const QUIZZES_URL =
+const GET_QUIZZES_URL =
     "https://studyq-backend-6cmwkb4jva-ue.a.run.app/studyQ/datastore_fetch_quizzes?username=";
+const POST_QUIZZES_URL =
+    "https://studyq-backend-6cmwkb4jva-ue.a.run.app/studyQ/quiz";
 const ACCOUNT_URL =
-    "https://studyq-backend-6cmwkb4jva-ue.a.run.app/studyQ/account?username=anotherone";
+    "https://studyq-backend-6cmwkb4jva-ue.a.run.app/studyQ/account?username=";
 
 // gcp stuff
 const CLOUD_STORAGE_BUCKET = "studyq_images";
@@ -19,12 +21,22 @@ const CLOUD_PROJECT_ID = "studyq-266906";
 
 class NetworkService {
   static Future<String> getQuizItemsForAccount(String userName) async {
-    var url = QUIZZES_URL + userName;
+    var url = GET_QUIZZES_URL + userName;
     log(url);
     var response = await http.get(url);
     log('Response status: ${response.statusCode}');
 
     return response.body;
+  }
+
+  static newQuizItem(String userName, String quiz) async {
+    var url = POST_QUIZZES_URL + userName;
+    log(url);
+    var response =
+        await http.post(url, body: {"username": userName, "quiz": quiz});
+    log('Response status: ${response.statusCode}');
+
+    return;
   }
 
   static putAccount(String userName) async {

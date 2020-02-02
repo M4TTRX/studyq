@@ -23,6 +23,7 @@ class QuizCard extends Card {
                   quiz.name.toUpperCase(),
                   style: TextStyle(fontSize: 24),
                 ),
+                Divider(),
                 _getLeaderBoard(quiz.leaderboard),
                 Card(
                   shape: RoundedRectangleBorder(
@@ -31,20 +32,21 @@ class QuizCard extends Card {
                   color: Colors.green,
                   child: InkWell(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "View",
-                            style: TextStyle(color: Colors.white),
+                            "VIEW",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
                     ),
                     onTap: () {
                       HapticFeedback.lightImpact();
-                      viewQuiz(quiz);
                     },
                   ),
                 ),
@@ -54,7 +56,14 @@ class QuizCard extends Card {
         );
 
   static Widget _getLeaderBoard(List<FriendScore> leaderboard) {
+    if (leaderboard.length == 0) {
+      return Container();
+    }
     var table = List<Widget>();
+    table.add(Text(
+      "Leaderboard:",
+      style: TextStyle(fontWeight: FontWeight.bold),
+    ));
     leaderboard.forEach((s) => {
           table.add(Divider()),
           table.add(Row(
@@ -68,6 +77,7 @@ class QuizCard extends Card {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: table,
       ),
     );

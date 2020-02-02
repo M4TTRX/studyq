@@ -47,12 +47,20 @@ class AppService {
     }
   }
 
+  static void setQuiz(Quiz quiz) async {
+    // get accountID
+    var account = await SharedPreferencesService.getAccount();
+    if (account.userName == null) {
+      log("No username found");
+      return;
+    }
+    NetworkService.newQuizItem(account.userName, quiz.toJson());
+  }
+
   static void uploadImage(File image) async {
     if (image == null) {
       return;
     }
     await NetworkService.uploadCloudFile(image);
   }
-
-  static void uploadQuiz(quiz) async {}
 }

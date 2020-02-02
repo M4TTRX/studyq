@@ -32,7 +32,7 @@ class _EditQuizViewState extends State<EditQuizView> {
           child: FloatingActionButton.extended(
               onPressed: () {
                 HapticFeedback.lightImpact();
-                AppService.uploadQuiz(widget.quiz);
+                AppService.setQuiz(widget.quiz);
               },
               label: new Text("Save Changes")),
         ));
