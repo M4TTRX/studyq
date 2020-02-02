@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class PrimaryButton extends Card {
-  PrimaryButton(Function onTap)
+  PrimaryButton(String text, Function onTap)
       : super(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32),
@@ -15,7 +15,7 @@ class PrimaryButton extends Card {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "SUBMIT",
+                    text.toUpperCase(),
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),

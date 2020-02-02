@@ -63,7 +63,7 @@ class _NewQuizCameraState extends State<NewQuizCamera> {
                         child: Image.file(_image, fit: BoxFit.scaleDown))),
             Padding(
                 padding: const EdgeInsets.only(top: 16),
-                child: PrimaryButton(() {
+                child: PrimaryButton("Submit", () {
                   _submitImage();
                 })),
             Padding(
