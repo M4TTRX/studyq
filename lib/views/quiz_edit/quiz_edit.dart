@@ -21,7 +21,7 @@ class _EditQuizViewState extends State<EditQuizView> {
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
-        children: widget.quiz.questions.map((question) => QuestionCard(question)).toList()
+        children: widget.quiz.questions.map((question) => QuestionCard(question, updateState: updateState)).toList()
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 32.0),
@@ -32,5 +32,11 @@ class _EditQuizViewState extends State<EditQuizView> {
             label: new Text("Save Changes", style: TextStyle(fontSize: 16))),
       )
     );
+  }
+
+  void updateState() {
+    setState(() {
+      return;
+    });
   }
 }

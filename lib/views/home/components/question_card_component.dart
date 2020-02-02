@@ -8,7 +8,7 @@ class QuestionCard extends Card {
 
   final Question question;
 
-  QuestionCard(this.question, {Future<void> Function(Question question) startQuestion}) : super(
+  QuestionCard(this.question, {Future<void> Function(Question question) startQuestion, void Function() updateState}) : super(
     elevation: 4,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -33,6 +33,7 @@ class QuestionCard extends Card {
                     ),
                     Checkbox(value: answer.isCorrect, onChanged: (bool newValue) {
                       newValue = setCorrectAnswer(question, answer);
+                      updateState();
                     })
                   ]
                 ),
