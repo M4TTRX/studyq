@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
+import 'package:studyQ/models/quiz_model.dart';
 import 'package:studyQ/service/service.dart';
+import 'package:studyQ/views/quiz_edit/quiz_edit.dart';
 import 'package:studyQ/views/shared/primary_button.dart';
 
 const _imageBorderRadius = 16.0;
@@ -25,6 +27,14 @@ class _NewQuizCameraState extends State<NewQuizCamera> {
     setState(() {
       _image = image;
     });
+  }
+
+  _submitImage() async {
+    Quiz quiz = await AppService.uploadImage(_image);
+    await Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) {
+      return EditQuizView(quiz: quiz);
+    }));
   }
 
   @override
@@ -54,7 +64,7 @@ class _NewQuizCameraState extends State<NewQuizCamera> {
             Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: PrimaryButton(() {
-                  AppService.uploadImage(_image);
+                  _submitImage();
                 })),
             Padding(
                 padding: const EdgeInsets.only(top: 16),

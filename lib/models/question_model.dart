@@ -12,10 +12,8 @@ class Question {
     id = Uuid().v4();
 
     answers.forEach((answer) => {
-      if (answer.isCorrect) {
-        setCorrectAnswer(answer)
-      }
-    });
+          if (answer.isCorrect) {setCorrectAnswer(answer)}
+        });
   }
 
   Answer getCorrectAnswer() {
@@ -45,7 +43,10 @@ class Question {
     this.answers = List<Answer>();
     var answers = m[_answersKey] as List;
     for (var answer in answers) {
-      this.answers.add(Answer.fromMap(answer));
+      var a = Answer.fromMap(answer);
+      if (a.answer != "") {
+        this.answers.add(a);
+      }
     }
   }
 

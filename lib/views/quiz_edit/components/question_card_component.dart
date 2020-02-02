@@ -34,7 +34,7 @@ class QuestionCard extends Card {
                                         Text(answer.answer, style: TextStyle()),
                                     fit: FlexFit.tight),
                                 Checkbox(
-                                    value: answer.isCorrect,
+                                    value: answer.isCorrect ?? false,
                                     onChanged: (bool newValue) {
                                       newValue =
                                           setCorrectAnswer(question, answer);
