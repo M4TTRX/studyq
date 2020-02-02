@@ -72,7 +72,6 @@ class _QuizViewState extends State<QuizView> {
               ),
               onPressed: () {
                 HapticFeedback.lightImpact();
-                hasAnswered = true;
                 if (widget.currentQuestion + 1 == widget.shuffledQuestions.length) {
                   hasFinished = true;
                   nextQuestionButton = MaterialButton(
@@ -83,12 +82,15 @@ class _QuizViewState extends State<QuizView> {
                   );
                 }
                 setState(() {
-                  widget.correctColor = Colors.green.shade500;
-                  widget.incorrectColor = Colors.red.shade500;
-                  if (answer.isCorrect) {
-                    widget.score += 1;
+                  if (!hasAnswered) {
+                    widget.correctColor = Colors.green.shade500;
+                    widget.incorrectColor = Colors.red.shade500;
+                    if (answer.isCorrect) {
+                      widget.score += 1;
+                    }
                   }
                 });
+                hasAnswered = true;
               },
             ),
           )
