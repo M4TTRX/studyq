@@ -31,7 +31,10 @@ class _LoginViewState extends State<LoginView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Padding(padding: EdgeInsets.all(32), child: Image(image: AssetImage('docres/logo.jpg'), width: 128)),
+              Padding(
+                  padding: EdgeInsets.all(32),
+                  child:
+                      Image(image: AssetImage('docres/logo.jpg'), width: 128)),
               Text(
                 "Login / Create an Account",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -55,7 +58,9 @@ class _LoginViewState extends State<LoginView> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
-                child: PrimaryButton(() {
+                child: PrimaryButton(
+                  "login",
+                  () {
                     HapticFeedback.lightImpact();
                     if (_formKey.currentState.validate()) {
                       AppService.setAccount(userName);
