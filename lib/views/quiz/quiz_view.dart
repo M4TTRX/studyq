@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:studyQ/models/answer_model.dart';
 import 'package:studyQ/models/question_model.dart';
 import 'package:studyQ/models/quiz_model.dart';
-import 'package:studyQ/views/home/components/question_card_component.dart';
 
 class QuizView extends StatefulWidget {
   QuizView({Key key, this.quiz}) : super(key: key) {
@@ -35,25 +34,13 @@ class _QuizViewState extends State<QuizView> {
     if (widget.currentQuestion < widget.shuffledQuestions.length) {
       Question question = widget.shuffledQuestions[widget.currentQuestion];
 
-      /*
-      Map<Answer, Color> shuffledAnswers = Map.fromIterables(
-        question.answers, 
-        List.generate(question.answers.length, (color) => Colors.transparent)
-      );
-      question.answers.shuffle();
-      question.answers.forEach((answer) =>
-        shuffledAnswers.putIfAbsent(answer, () => Colors.transparent)
-      );
-      */
       List<Answer> shuffledAnswers = question.answers;
-      //shuffledAnswers.shuffle();
       
       Column answers = Column(
-        children: shuffledAnswers/*.keys*/.map((answer) =>
+        children: shuffledAnswers.map((answer) =>
           Padding(
             padding: const EdgeInsets.all(16),
             child: FlatButton(
-              //color: shuffledAnswers[answer],
               color: answer.isCorrect ? widget.correctColor : widget.incorrectColor,
               child: Row(
                 children: <Widget>[
@@ -66,7 +53,6 @@ class _QuizViewState extends State<QuizView> {
               onPressed: () {
                 HapticFeedback.lightImpact();
                 setState(() {
-                  //shuffledAnswers[answer] = answer.isCorrect ? Colors.green.shade500 : Colors.red.shade500;
                   widget.correctColor = Colors.green.shade500;
                   widget.incorrectColor = Colors.red.shade500;
                 });
