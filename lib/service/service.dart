@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:studyQ/models/account_model.dart';
 import 'package:studyQ/models/quiz_model.dart';
@@ -21,6 +22,7 @@ class AppService {
   static void setAccount(String userName) async {
     var account = Account(userName: userName);
     await SharedPreferencesService.putAccount(account);
+    await NetworkService.putAccount(account.userName);
   }
 
   static Future<List<Quiz>> _getQuizItems() async {
@@ -43,5 +45,12 @@ class AppService {
       log("Error parsing json:" + rawJson);
       return [];
     }
+  }
+
+  static void uploadImage(File image) async {
+    if (image == null) {
+      return;
+    }
+    await NetworkService.uploadCloudFile(image);
   }
 }
