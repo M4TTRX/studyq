@@ -47,6 +47,7 @@ class QuizCard extends Card {
                     ),
                     onTap: () {
                       HapticFeedback.lightImpact();
+                      viewQuiz(quiz);
                     },
                   ),
                 ),

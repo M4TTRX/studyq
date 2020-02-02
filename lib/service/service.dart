@@ -57,10 +57,11 @@ class AppService {
     NetworkService.newQuizItem(account.userName, quiz.toJson());
   }
 
-  static void uploadImage(File image) async {
+  static Future<Quiz> uploadImage(File image) async {
     if (image == null) {
-      return;
+      return Quiz();
     }
-    await NetworkService.uploadCloudFile(image);
+    String rawJson = await NetworkService.uploadCloudFile(image);
+    return Quiz.fromJson(rawJson);
   }
 }

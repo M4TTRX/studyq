@@ -14,6 +14,8 @@ const POST_QUIZZES_URL =
     "https://studyq-backend-6cmwkb4jva-ue.a.run.app/studyQ/quiz";
 const ACCOUNT_URL =
     "https://studyq-backend-6cmwkb4jva-ue.a.run.app/studyQ/account?username=";
+const GET_VISION_URL =
+    "https://studyq-backend-6cmwkb4jva-ue.a.run.app/studyQ/vision-api?image-gcs=gs://studyq_images/";
 
 // gcp stuff
 const CLOUD_STORAGE_BUCKET = "studyq_images";
@@ -30,10 +32,9 @@ class NetworkService {
   }
 
   static newQuizItem(String userName, String quiz) async {
-    var url = POST_QUIZZES_URL + userName;
+    var url = POST_QUIZZES_URL + "?username=$userName";
     log(url);
-    var response =
-        await http.post(url, body: {"username": userName, "quiz": quiz});
+    var response = await http.post(url, body: {"quiz": quiz});
     log('Response status: ${response.statusCode}');
 
     return;
@@ -82,8 +83,15 @@ class NetworkService {
     // Instantiate objects to accesss Cloud Storage
     var storage = new Storage(client, CLOUD_PROJECT_ID);
     var bucket = storage.bucket(CLOUD_STORAGE_BUCKET);
-    var objectID = Uuid().v4();
-    await file.openRead().pipe(bucket.write(objectID));
-    return objectID;
+    var imageID = Uuid().v4();
+    await file.openRead().pipe(bucket.write(imageID));
+
+    //  call backend to inform them of changes
+    var url = GET_VISION_URL + imageID;
+    log(url);
+    var response = await http.get(url);
+    log('Response status: ${response.statusCode}');
+
+    return response.body;
   }
 }
