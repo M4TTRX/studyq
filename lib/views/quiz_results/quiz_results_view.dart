@@ -23,9 +23,23 @@ class _QuizResultsViewState extends State<QuizResultsView> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: Text(widget.quiz.name)
-      )
+      ),
+      body: Row(
+        children: <Widget>[
+          Spacer(flex: 1),
+          Column(
+            children: <Widget>[
+              Spacer(flex: 1),
+              Text((widget.score / widget.quiz.questions.length * 100).round().toInt().toString() + "%", style: TextStyle(fontSize: 100, fontWeight: FontWeight.bold)),
+              Text(widget.score.toString() + " / " + widget.quiz.questions.length.toString(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Spacer(flex: 3)
+            ]
+          ),
+          Spacer(flex: 1)
+        ]
+      ),
     );
   }
 

@@ -18,7 +18,7 @@ class _ViewQuizViewState extends State<ViewQuizView> {
   Widget build(
     BuildContext context) {
       return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: Text(widget.quiz.name),
       ),
       body: Column(
