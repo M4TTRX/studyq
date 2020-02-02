@@ -29,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
     _loadAndVerifyAccount();
     return Scaffold(
       appBar: AppBar(
-        title: Text("StudyQ"),
+        title: Text("studyQ"),
       ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
