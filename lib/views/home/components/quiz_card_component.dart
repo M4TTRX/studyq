@@ -20,7 +20,7 @@ class QuizCard extends Card {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  quiz.name.toUpperCase(),
+                  quiz.name,
                   style: TextStyle(fontSize: 24),
                 ),
                 Divider(),
@@ -37,7 +37,7 @@ class QuizCard extends Card {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "VIEW",
+                            "View",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
@@ -61,7 +61,7 @@ class QuizCard extends Card {
     }
     var table = List<Widget>();
     table.add(Text(
-      "Leaderboard:",
+      "Leaderboard",
       style: TextStyle(fontWeight: FontWeight.bold),
     ));
     leaderboard.forEach((s) => {

@@ -15,7 +15,7 @@ class PrimaryButton extends Card {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "SUBMIT",
+                    "Submit",
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),

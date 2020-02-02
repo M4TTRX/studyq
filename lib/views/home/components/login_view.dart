@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:studyQ/service/service.dart';
 import 'package:studyQ/views/home/home_view.dart';
+import 'package:studyQ/views/shared/primary_button.dart';
 
 // That key is required for the form to work properly
 final _formKey = GlobalKey<FormState>(debugLabel: '_formKey');
@@ -20,22 +23,24 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     var userName = "";
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
-        padding: EdgeInsets.fromLTRB(32, 69, 0, 32),
+        padding: EdgeInsets.all(32),
         child: Form(
           key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              Padding(padding: EdgeInsets.all(32), child: Image(image: AssetImage('docres/logo.jpg'), width: 128)),
               Text(
-                "Please Log in",
+                "Login / Create an Account",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 80),
                 child: TextFormField(
                   decoration: new InputDecoration(
-                    labelText: "Enter your username",
+                    labelText: "Enter your username...",
                   ),
                   onChanged: (input) {
                     userName = input;
@@ -50,10 +55,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
-                child: RaisedButton(
-                  child: Text("Login/Sign up"),
-                  color: Colors.green,
-                  onPressed: () {
+                child: PrimaryButton(() {
                     HapticFeedback.lightImpact();
                     if (_formKey.currentState.validate()) {
                       AppService.setAccount(userName);
