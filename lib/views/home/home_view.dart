@@ -1,9 +1,11 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:studyQ/models/account_model.dart';
 import 'package:studyQ/service/service.dart';
+import 'package:studyQ/views/new_quiz/new_quiz_camera_view.dart';
 
 import 'package:studyQ/views/view_quiz/view_quiz_view.dart';
 
@@ -15,7 +17,6 @@ import 'components/login_view.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({Key key}) : super(key: key);
-
   @override
   _HomeViewState createState() => _HomeViewState();
 }
@@ -30,14 +31,12 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         title: Text("StudyQ"),
       ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: FloatingActionButton.extended(
-            onPressed: () {
-              HapticFeedback.lightImpact();
-            },
-            label: new Text("New Quiz", style: TextStyle(fontSize: 16))),
-      ),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            HapticFeedback.lightImpact();
+            _takePic();
+          },
+          label: new Text("New Quiz", style: TextStyle(fontSize: 16))),
       body: StreamBuilder<Object>(
         stream: service.quizItemStream,
         builder: (context, snapchot) {
@@ -64,6 +63,12 @@ class _HomeViewState extends State<HomeView> {
   Future<void> viewQuiz(Quiz quiz) async {
     await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return ViewQuizView(quiz: quiz);
+    }));
+  }
+
+  Future<void> _takePic() async {
+    await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      return NewQuizCamera();
     }));
   }
 
