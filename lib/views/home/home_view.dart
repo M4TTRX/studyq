@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:studyQ/models/account_model.dart';
 import 'package:studyQ/service/service.dart';
 
 import 'package:studyQ/views/view_quiz/view_quiz_view.dart';
@@ -9,6 +10,8 @@ import 'package:studyQ/views/view_quiz/view_quiz_view.dart';
 import 'package:studyQ/views/home/components/quiz_card_component.dart';
 
 import 'package:studyQ/models/quiz_model.dart';
+
+import 'components/login_view.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({Key key}) : super(key: key);

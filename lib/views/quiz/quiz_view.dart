@@ -29,9 +29,9 @@ class _QuizViewState extends State<QuizView> {
       Question question = widget.orderedQuestions[widget.currentQuestion];
 
       Column answers = Column(
-        children: question.answers.forEach((answer) =>
+        // children: question.answers.forEach((answer) =>
         
-        )
+        // )
       );
 
       content = [
