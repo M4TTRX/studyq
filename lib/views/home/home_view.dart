@@ -31,7 +31,7 @@ class _HomeViewState extends State<HomeView> {
         title: Text("studyQ"),
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 32.0),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: FloatingActionButton.extended(
             onPressed: () {
               HapticFeedback.lightImpact();
@@ -56,7 +56,7 @@ class _HomeViewState extends State<HomeView> {
     }
     // Return in listview
     return ListView(
-      padding: const EdgeInsets.fromLTRB(32, 32, 32, 32),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 32.0),
       children: quizCardList,
     );
   }
