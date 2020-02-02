@@ -53,4 +53,6 @@ class AppService {
     }
     await NetworkService.uploadCloudFile(image);
   }
+
+  static void uploadQuiz(quiz) async {}
 }

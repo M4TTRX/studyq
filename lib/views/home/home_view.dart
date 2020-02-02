@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,7 +54,7 @@ class _HomeViewState extends State<HomeView> {
     }
     // Return in listview
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 32.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
       children: quizCardList,
     );
   }

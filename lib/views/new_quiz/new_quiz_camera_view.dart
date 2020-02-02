@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:studyQ/service/service.dart';
-import 'package:studyQ/views/home/home_view.dart';
+import 'package:studyQ/views/shared/primary_button.dart';
 
 const _imageBorderRadius = 16.0;
 
@@ -52,33 +52,10 @@ class _NewQuizCameraState extends State<NewQuizCamera> {
                         borderRadius: BorderRadius.circular(_imageBorderRadius),
                         child: Image.file(_image, fit: BoxFit.scaleDown))),
             Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32),
-                ),
-                color: Colors.green,
-                child: InkWell(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "SUBMIT",
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                  onTap: () {
-                    HapticFeedback.lightImpact();
-                    AppService.uploadImage(_image);
-                  },
-                ),
-              ),
-            ),
+                padding: const EdgeInsets.only(top: 16),
+                child: PrimaryButton(() {
+                  AppService.uploadImage(_image);
+                })),
             Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: MaterialButton(
