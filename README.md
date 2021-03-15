@@ -7,7 +7,7 @@ An app to help you study with friends!
 
 ## Screenshots
 
-![image](https://user-images.githubusercontent.com/36091631/111090420-0976a300-8506-11eb-9b1e-65d3fa910638.png)
+![image](https://user-images.githubusercontent.com/36091631/111090683-f1ebea00-8506-11eb-88fd-c1a8d4d0ff52.png)
 
 ![image](https://user-images.githubusercontent.com/36091631/111090524-640fff00-8506-11eb-9818-6ec8ad22bb33.png)
 
