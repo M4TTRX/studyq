@@ -57,7 +57,7 @@ class QuizCard extends Card {
         );
 
   static Widget _getLeaderBoard(List<FriendScore> leaderboard) {
-    if (leaderboard.length == 0) {
+    if (leaderboard == null || leaderboard.length == 0) {
       return Container();
     }
     var table = List<Widget>();

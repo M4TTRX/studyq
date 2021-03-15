@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:studyQ/models/friend_score_model.dart';
 import 'package:studyQ/models/question_model.dart';
@@ -13,10 +14,16 @@ class Quiz {
 
   Quiz({this.name, this.questions}) {
     id = Uuid().v4();
+    leaderboard = [
+      FriendScore(username: "Johnny", highscore: 3),
+      FriendScore(username: "Matt", highscore: 3),
+      FriendScore(username: "Tom", highscore: 3),
+    ];
   }
 
   int getHighScore() {
-    return _highScore ?? 0;
+    var rng = new Random();
+    return rng.nextInt(14);
   }
 
   String getScoreFraction() {

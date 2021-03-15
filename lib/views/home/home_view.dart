@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:studyQ/models/account_model.dart';
+import 'package:studyQ/models/answer_model.dart';
+import 'package:studyQ/models/question_model.dart';
 import 'package:studyQ/service/service.dart';
 import 'package:studyQ/views/new_quiz/new_quiz_camera_view.dart';
 
@@ -47,7 +49,20 @@ class _HomeViewState extends State<HomeView> {
 
   Widget _buildHomeBody(List<Quiz> quizList) {
     // Generate list of cards
-    var quizCardList = List<QuizCard>();
+    List<QuizCard> quizCardList = [];
+    quizList.add(Quiz(name: "Physics Midterm 2019", questions: [
+      Question(question: "What is 9+10", answers: [Answer("21", true)])
+    ]));
+    quizList.add(Quiz(name: "Physics Midterm 2018", questions: [
+      Question(question: "What is 9+10", answers: [Answer("21", true)])
+    ]));
+    quizList.add(Quiz(name: "Physics Midterm 2017", questions: [
+      Question(question: "What is 9+10", answers: [Answer("21", true)])
+    ]));
+    quizList.add(Quiz(name: "Chem Finalerm 2018", questions: [
+      Question(question: "What is 9+10", answers: [Answer("21", true)])
+    ]));
+
     if (quizList != null) {
       quizList.forEach(
           (quiz) => quizCardList.add(QuizCard(quiz, viewQuiz: viewQuiz)));
