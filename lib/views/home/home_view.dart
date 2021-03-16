@@ -51,16 +51,36 @@ class _HomeViewState extends State<HomeView> {
     // Generate list of cards
     List<QuizCard> quizCardList = [];
     quizList.add(Quiz(name: "Physics Midterm 2019", questions: [
-      Question(question: "What is 9+10", answers: [Answer("21", true)])
+      Question(question: "What is 9+10", answers: [
+        Answer("21", true),
+        Answer("19", false),
+        Answer("910", false),
+        Answer("109", false)
+      ])
     ]));
     quizList.add(Quiz(name: "Physics Midterm 2018", questions: [
-      Question(question: "What is 9+10", answers: [Answer("21", true)])
+      Question(question: "What is 9+10", answers: [
+        Answer("21", true),
+        Answer("19", false),
+        Answer("910", false),
+        Answer("109", false)
+      ])
     ]));
     quizList.add(Quiz(name: "Physics Midterm 2017", questions: [
-      Question(question: "What is 9+10", answers: [Answer("21", true)])
+      Question(question: "What is 9+10", answers: [
+        Answer("21", true),
+        Answer("19", false),
+        Answer("910", false),
+        Answer("109", false)
+      ])
     ]));
     quizList.add(Quiz(name: "Chem Finalerm 2018", questions: [
-      Question(question: "What is 9+10", answers: [Answer("21", true)])
+      Question(question: "What is 9+10", answers: [
+        Answer("21", true),
+        Answer("19", false),
+        Answer("910", false),
+        Answer("109", false)
+      ])
     ]));
 
     if (quizList != null) {

@@ -14,10 +14,11 @@ class Quiz {
 
   Quiz({this.name, this.questions}) {
     id = Uuid().v4();
+    var rng = new Random();
     leaderboard = [
-      FriendScore(username: "Johnny", highscore: 3),
-      FriendScore(username: "Matt", highscore: 3),
-      FriendScore(username: "Tom", highscore: 3),
+      FriendScore(username: "Johnny", highscore: rng.nextInt(14)),
+      FriendScore(username: "Matt", highscore: rng.nextInt(14)),
+      FriendScore(username: "Tom", highscore: rng.nextInt(14)),
     ];
   }
 
